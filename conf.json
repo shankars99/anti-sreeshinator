@@ -1,4 +1,4 @@
 {
-    "contact" : "whatsapp group/chat name",
-    "driver_path" : "path to the webdriver"
+    "contact": "whatsapp group/chat name",
+    "driver_path": "path to the webdriver"
 }
