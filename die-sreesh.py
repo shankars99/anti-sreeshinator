@@ -17,8 +17,10 @@ contact= get_group_name()
 
 startup()
 gotoSearchBar(driver, contact)
-while( True ):
-    #getChatMessage(driver, contact, text)
-    getChatMessageTest(driver, contact)
-    #quitApp(driver)
-    time.sleep(1)
+
+option = input("1.Log messages\n2.Send a message\nEnter your choice:")
+if option == '1':
+    logChatMessage(driver, contact)
+else:
+    msg = input("Enter message to be sent:")
+    sendMessage(driver, contact, msg)
