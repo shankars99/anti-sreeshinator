@@ -13,11 +13,12 @@ from lambsauce import *
 url = "https://web.whatsapp.com"
 
 driver = driver_init(url)
-contact, text = send_message()
+contact= get_group_name()
 
 startup()
 gotoSearchBar(driver, contact)
 while( True ):
     #getChatMessage(driver, contact, text)
-    getChatMessageTest(driver, contact, text)
-    quitApp(driver)
+    getChatMessageTest(driver, contact)
+    #quitApp(driver)
+    time.sleep(1)

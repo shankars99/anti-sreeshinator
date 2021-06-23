@@ -10,10 +10,9 @@ from selenium.common.exceptions import NoSuchElementException
 import time
 
 
-def send_message():
-    contact = "Homo Sapiens"
-    text = "Hey, this message was sent using Selenium"
-    return contact, text
+def get_group_name():
+    contact = "Ilum, Land of Boomers"
+    return contact
 
 
 def driver_init(url):
@@ -61,7 +60,7 @@ def sendMessage(driver, contact, text):
     time.sleep(1)
 
 
-def getChatMessage(driver, contact, text):
+def getChatMessage(driver, contact):
     selected_contact = driver.find_element_by_xpath(
         "//span[@title='"+contact+"']")
     selected_contact.click()
@@ -77,7 +76,8 @@ def getChatMessage(driver, contact, text):
             pass
 
 
-def getChatMessageTest(driver, contact, text):
+def getChatMessageTest(driver, contact):
+    last_message = ['The List']
     selected_contact = driver.find_element_by_xpath(
         "//span[@title='"+contact+"']")
     selected_contact.click()
@@ -90,28 +90,33 @@ def getChatMessageTest(driver, contact, text):
     first = "div/div[2]"
     notFirst = "div/div[1]"
 
-
-    last_message = ""
     msg_types = [notFirst, reply, first, fwd]
+
+    while True:
+        extractLastMessage(driver, prefix, msg_types,
+                           msg_num_postNum, last_message)
+
+
+def extractLastMessage(driver, prefix, msg_types, msg_num_postNum, last_message):
     for num in range(30, 0, -1):
         msg_prefix = prefix + str(num) + msg_num_postNum
         for msg_type in msg_types:
-            temp_last_message = showMessage(x_path_dest(driver, msg_prefix + msg_type), last_message)
+            temp_last_message = showMessage(x_path_dest(driver, msg_prefix + msg_type))
 
-            if  last_message != temp_last_message:
-                last_message = temp_last_message
+            if temp_last_message not in last_message:
+                last_message.append(temp_last_message)
+                print(temp_last_message)
                 return
 
 
-def showMessage(input_box, last_message):
+def showMessage(input_box):
     if input_box != None and input_box.get_attribute("data-pre-plain-text") != None:
         sender = input_box.get_attribute("data-pre-plain-text")
         message = input_box.text
-        if(sender.find("Sh")) > -1 and message != last_message:
-            print(sender + message + "\n")
-            return message
+        send_message = (sender + message)
+        return send_message
     else:
-        return last_message
+        return 'The List'
 
 
 def quitApp(driver):
