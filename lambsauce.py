@@ -8,16 +8,18 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.common.exceptions import NoSuchElementException
 
 import time
+import json
 
+f = open("conf.json", "r")
+data = json.loads(f.read())
 
 def get_group_name():
-    contact = "Ilum, Land of Boomers"
+    contact = data["contact"]
     return contact
 
 
 def driver_init(url):
-    driver = webdriver.Firefox(
-        executable_path="/home/shankar/Music/geckodriver-v0.29.1-linux32/geckodriver")
+    driver = webdriver.Firefox(executable_path=data["driver_path"])
     driver.get(url)
     return driver
 
