@@ -1,11 +1,15 @@
 # anti-sreeshinator
 
-# packages used
-pip install selenium
+# Packages used
+`pip install selenium`
 
-pip install webdriver_manager
+`pip install webdriver_manager`
 
-#how to use:
-download the gecko-driver from https://github.com/mozilla/geckodriver/releases
 
-then open conf.json
+# Setup:
+1. Have firefox
+2. Download the gecko-driver from [here](https://github.com/mozilla/geckodriver/releases)
+
+# Run
+1. Then open conf.json and enter the details 
+2. `python die-sreesh.py`
