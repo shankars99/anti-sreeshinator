@@ -11,5 +11,5 @@
 2. Download the gecko-driver from [here](https://github.com/mozilla/geckodriver/releases)
 
 # Run
-1. Then open conf.json and enter the details 
+1. Then open anti-sreeshinator/conf.json and enter the details
 2. `python die-sreesh.py`
